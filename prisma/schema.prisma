@@ -14,5 +14,48 @@ model User {
   id    Int     @id @default(autoincrement())
   email String  @unique
   password  String
+  credentials credentials[]
+  cards cards[]
+  safenote safenote[]
+  wifi wifi[]
 }
 
+model credentials {
+  id          Int    @id(map: "credentials_pk") @default(autoincrement())
+  title       String
+  url         String
+  nameUrl     String
+  passwordUrl String
+  userId      Int
+  users       User  @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+model cards {
+  id             Int     @id(map: "Card_pk") @default(autoincrement())
+  nameCard       String
+  numberCard     Int     @default(autoincrement())
+  expirationDate String
+  cvc            String
+  password       String?
+  title          String
+  isVirtual      Boolean
+  type           String
+  userId         Int
+  users          User   @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model safenote {
+  id          Int    @id(map: "safeNote_pk") @default(autoincrement())
+  title       String
+  description String
+  userId      Int
+  users       User  @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model wifi {
+  id           Int    @id(map: "wifi_pk") @default(autoincrement())
+  title        String
+  nameWifi     String
+  passwordWifi String
+  userId       Int
+  users        User  @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
