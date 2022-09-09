@@ -24,8 +24,8 @@ model credentials {
   id          Int    @id(map: "credentials_pk") @default(autoincrement())
   title       String
   url         String
-  nameUrl     String
-  passwordUrl String
+  nameUser     String
+  passwordUser String
   userId      Int
   users       User  @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
