@@ -1,19 +1,20 @@
 import * as credentialRepository from "../repositories/credentialsRepository"
 import Cryptr from "cryptr";
+import { ICredentialsData } from "../types/credentialTypes";
 
-export async function creatingCredentials(title: string, url: string,nameUser: string,passwordUser: string, userId: string){
+export async function creatingCredentials(credential: ICredentialsData, userId: number){
 // Rule of business: verify if title is already use 
-const searchTitle = await credentialRepository.findTitle(title)
+const searchTitle = await credentialRepository.findTitle(credential, userId)
 console.log(searchTitle)
 if(searchTitle !== null) {
     throw { code: "conflict", message: "this title is already use" };
 }
 // Rule of business: cript password with cryptr
 const cryptr = new Cryptr('myTotallySecretKey');
-const passwordCript = cryptr.encrypt(passwordUser);
+const passwordCript = cryptr.encrypt(credential.passwordUser);
 console.log(passwordCript)
-
-await credentialRepository.insertCredential(title, url,nameUser,passwordCript, Number(userId))
+credential.passwordUser = passwordCript
+await credentialRepository.insertCredential(credential, Number(userId))
 }
 
 export async function lookingOneCredential(userId: number, credentialsId: number){

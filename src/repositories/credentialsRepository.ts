@@ -1,21 +1,23 @@
 import { ClientBase } from "pg"
 import client from "../databases/postgres"
+import { ICredentialsData } from "../types/credentialTypes"
 
-export async function findTitle(title: string){
-    return await client.credentials.findFirst({ 
+export async function findTitle(credential: ICredentialsData, userId: number){
+    return await client.credentials.findMany({ 
         where:{
-            title: title
+            title: credential.title,
+            userId: userId
         }
 })
 }
 
-export async function insertCredential(title: string, url: string,nameUser: string,passwordCript: string, userId: number){
+export async function insertCredential(credential: ICredentialsData, userId: number){
     return await client.credentials.create({
         data: {
-            title: title,
-            url: url,
-            nameUser: nameUser,
-            passwordUser: passwordCript,
+            title: credential.title,
+            url: credential.url,
+            nameUser: credential.nameUser,
+            passwordUser: credential.passwordUser,
             userId: userId
         }
     })

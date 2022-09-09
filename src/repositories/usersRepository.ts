@@ -1,15 +1,16 @@
 import client from "../databases/postgres"
+import { IUserData } from "../types/usersType"
 
-export async function findEmail(email:string) {
-return await client.user.findMany({where: {
-    email: email
+export async function findEmail(user: IUserData) {
+return await client.user.findUnique({where: {
+    email: user.email
 }})
 }
 
-export async function insertUser(email: string, encryptedPassword: string){
+export async function insertUser(user: IUserData, encryptedPassword: string){
     return await client.user.create({
         data: {
-            email: email,
+            email: user.email,
             password: encryptedPassword
         }
     })
