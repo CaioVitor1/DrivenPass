@@ -6,7 +6,7 @@ export async function creatingCredentials(credential: ICredentialsData, userId: 
 // Rule of business: verify if title is already use 
 const searchTitle = await credentialRepository.findTitle(credential, userId)
 console.log(searchTitle)
-if(searchTitle !== null) {
+if(searchTitle.length !== 0) {
     throw { code: "conflict", message: "this title is already use" };
 }
 // Rule of business: cript password with cryptr

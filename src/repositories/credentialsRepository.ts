@@ -1,4 +1,3 @@
-import { ClientBase } from "pg"
 import client from "../databases/postgres"
 import { ICredentialsData } from "../types/credentialTypes"
 
