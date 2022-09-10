@@ -45,8 +45,8 @@ model cards {
 
 model safenote {
   id          Int    @id(map: "safeNote_pk") @default(autoincrement())
-  title       String
-  description String
+  title       String @db.VarChar(50)
+  description String @db.VarChar(1000)
   userId      Int
   users       User  @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
