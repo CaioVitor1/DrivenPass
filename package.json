@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node ./src/index.ts",
+    "build": "tsc && npx prisma migrate deploy",
+	  "start": "node dist/app.js",
     "dev": "nodemon src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

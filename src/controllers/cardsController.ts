@@ -6,7 +6,7 @@ export async function createCard(req: Request, res: Response){
     const card: ICardData = req.body
     const userId = res.locals.session
     await cardServices.creatingCard(card, Number(userId))
-   return res.status(200).send("Card create with successfull")
+   return res.status(201).send("Card create with successfull")
 }
 
 export async function oneCard(req: Request, res: Response){

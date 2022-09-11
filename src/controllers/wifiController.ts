@@ -7,7 +7,7 @@ export async function createWifi(req: Request, res: Response){
     const userId = res.locals.session
     const wifi: IWifiData = req.body
     await wifiService.creatingWifi(Number(userId), wifi)
-    return res.status(200).send("wifi create with successfull")
+    return res.status(201).send("wifi create with successfull")
 }
 
 export async function oneWifi(req: Request, res: Response){
@@ -32,5 +32,5 @@ export async function deleteWifi(req: Request, res: Response){
         return res.status(422).send("wifi Id is not provide")
     }
     await wifiService.deletewifi(Number(userId), Number(wifiId))
-    return res.status(200).send("wifi delete")
+    return res.status(204).send("wifi delete")
 }

@@ -6,7 +6,7 @@ export async function createSafeNotes(req: Request, res: Response){
     const safeNote: ISafeNoteData = req.body
     const userId = res.locals.session
     await safeNoteServices.creatingSafeNote(safeNote, Number(userId))
-   return res.status(200).send("Safe Note create with successfull")
+   return res.status(201).send("Safe Note create with successfull")
 }
 
 export async function oneSafeNote(req: Request, res: Response){
@@ -29,5 +29,5 @@ export async function deleteSafeNote(req: Request, res: Response){
         return res.status(422).send("note Id is not provide")
     }
     await safeNoteServices.deleteNote(Number(safeNoteId), Number(userId))
-    return res.status(200).send("Note delete")
+    return res.status(204).send("Note delete")
 }

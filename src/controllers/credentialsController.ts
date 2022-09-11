@@ -34,5 +34,5 @@ export async function deleteCredential(req: Request, res: Response){
         return res.status(422).send("credential Id is not provide")
     }
     await credentialService.deletingCredential(Number(credentialsId), Number(userId))
-    return res.status(200).send("Credential delete")
+    return res.status(204).send("Credential delete")
 }
