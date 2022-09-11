@@ -4,7 +4,6 @@ import * as safeNoteRepository from "../repositories/safeNoteRepository"
 
 export async function creatingSafeNote(safeNote: ISafeNoteData, userId: number){
 // Role of business: verify if title already exist
-const {title} = safeNote
 const searchTitle = await safeNoteRepository.findTitle(safeNote, userId)
 console.log(searchTitle)
 if(searchTitle.length !== 0) {

@@ -35,7 +35,7 @@ model cards {
   numberCard     Int     @default(autoincrement())
   expirationDate String
   cvc            String
-  password       String?
+  password       String
   title          String
   isVirtual      Boolean
   type           String
